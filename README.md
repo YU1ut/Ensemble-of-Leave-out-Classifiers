@@ -1,4 +1,4 @@
-# Ensembled Leave-out Classifiers
+# Ensemble of Self Supervised Leave-out Classifiers
 This is an unofficial pytorch implementation of [Out-of-Distribution Detection Using an Ensemble of Self Supervised Leave-out Classifiers](http://openaccess.thecvf.com/content_ECCV_2018/papers/Apoorv_Vyas_Out-of-Distribution_Detection_Using_ECCV_2018_paper.pdf). 
 
 ## Requirements
