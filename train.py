@@ -139,19 +139,19 @@ def split_dataset(id_train_dataset, ood_train_dataset):
     inlabel = []
     outdata = []
     outlabel = []
-    for i in range(len(id_train_dataset.train_data)):
-        if int(id_train_dataset.train_labels[i]) in In_classes:
-            indata.append(id_train_dataset.train_data[i])
-            inlabel.append(In_classes.index(id_train_dataset.train_labels[i]))
+    for i in range(len(id_train_dataset.data)):
+        if int(id_train_dataset.targets[i]) in In_classes:
+            indata.append(id_train_dataset.data[i])
+            inlabel.append(In_classes.index(id_train_dataset.targets[i]))
         else:
-            outdata.append(id_train_dataset.train_data[i])
+            outdata.append(id_train_dataset.data[i])
             outlabel.append(-1)
 
-    id_train_dataset.train_data = indata
-    id_train_dataset.train_labels = inlabel
+    id_train_dataset.data = indata
+    id_train_dataset.targets = inlabel
 
-    ood_train_dataset.train_data = outdata
-    ood_train_dataset.train_labels = outlabel
+    ood_train_dataset.data = outdata
+    ood_train_dataset.targets = outlabel
 
     return id_train_dataset, ood_train_dataset
 

@@ -58,9 +58,9 @@ class CIFAR10Mix(torchvision.datasets.CIFAR10):
         if val:
             #ID Data
             np.random.seed(3)
-            p1 = np.random.permutation(len(self.test_data))
-            self.test_data = self.test_data[p1[:1000]]
-            self.test_labels = [self.test_labels[i] for i in p1.tolist()[:1000]]
+            p1 = np.random.permutation(len(self.data))
+            self.data = self.data[p1[:1000]]
+            self.targets = [self.targets[i] for i in p1.tolist()[:1000]]
             #OOD Data
             np.random.seed(3)
             p2 = np.random.permutation(len(self.outpath))
@@ -68,9 +68,9 @@ class CIFAR10Mix(torchvision.datasets.CIFAR10):
         else:
             #ID Data
             np.random.seed(3)
-            p1 = np.random.permutation(len(self.test_data))
-            self.test_data = self.test_data[p1[1000:]]
-            self.test_labels = [self.test_labels[i] for i in p1.tolist()[1000:]]
+            p1 = np.random.permutation(len(self.data))
+            self.data = self.data[p1[1000:]]
+            self.targets = [self.targets[i] for i in p1.tolist()[1000:]]
             #OOD Data
             np.random.seed(3)
             p2 = np.random.permutation(len(self.outpath))
@@ -84,11 +84,11 @@ class CIFAR10Mix(torchvision.datasets.CIFAR10):
         Returns:
             tuple: (image, target) where target is index of the target class.
         """
-        if index < len(self.test_data):
-            img, target = self.test_data[index], self.test_labels[index]
+        if index < len(self.data):
+            img, target = self.data[index], self.targets[index]
             img = Image.fromarray(img)
         else:
-            img_path, target = self.outpath[index - len(self.test_data)], -1
+            img_path, target = self.outpath[index - len(self.data)], -1
             img = pil_loader(img_path)
             img = transforms.Resize(32)(img)
 
@@ -102,7 +102,7 @@ class CIFAR10Mix(torchvision.datasets.CIFAR10):
         return img, target
 
     def __len__(self):
-        return len(self.test_data) + len(self.outpath)
+        return len(self.data) + len(self.outpath)
 
 
 class CIFAR100Mix(torchvision.datasets.CIFAR100):
@@ -117,9 +117,9 @@ class CIFAR100Mix(torchvision.datasets.CIFAR100):
         if val:
             #ID Data
             np.random.seed(3)
-            p1 = np.random.permutation(len(self.test_data))
-            self.test_data = self.test_data[p1[:1000]]
-            self.test_labels = [self.test_labels[i] for i in p1.tolist()[:1000]]
+            p1 = np.random.permutation(len(self.data))
+            self.data = self.data[p1[:1000]]
+            self.targets = [self.targets[i] for i in p1.tolist()[:1000]]
             #OOD Data
             np.random.seed(3)
             p2 = np.random.permutation(len(self.outpath))
@@ -127,9 +127,9 @@ class CIFAR100Mix(torchvision.datasets.CIFAR100):
         else:
             #ID Data
             np.random.seed(3)
-            p1 = np.random.permutation(len(self.test_data))
-            self.test_data = self.test_data[p1[1000:]]
-            self.test_labels = [self.test_labels[i] for i in p1.tolist()[1000:]]
+            p1 = np.random.permutation(len(self.data))
+            self.data = self.data[p1[1000:]]
+            self.targets = [self.targets[i] for i in p1.tolist()[1000:]]
             #OOD Data
             np.random.seed(3)
             p2 = np.random.permutation(len(self.outpath))
@@ -143,11 +143,11 @@ class CIFAR100Mix(torchvision.datasets.CIFAR100):
         Returns:
             tuple: (image, target) where target is index of the target class.
         """
-        if index < len(self.test_data):
-            img, target = self.test_data[index], self.test_labels[index]
+        if index < len(self.data):
+            img, target = self.data[index], self.targets[index]
             img = Image.fromarray(img)
         else:
-            img_path, target = self.outpath[index - len(self.test_data)], -1
+            img_path, target = self.outpath[index - len(self.data)], -1
             img = pil_loader(img_path)
             img = transforms.Resize(32)(img)
 
@@ -161,4 +161,4 @@ class CIFAR100Mix(torchvision.datasets.CIFAR100):
         return img, target
 
     def __len__(self):
-        return len(self.test_data) + len(self.outpath)
+        return len(self.data) + len(self.outpath)

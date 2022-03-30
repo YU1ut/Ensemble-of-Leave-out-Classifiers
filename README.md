@@ -3,8 +3,8 @@ This is an unofficial pytorch implementation of [Out-of-Distribution Detection U
 
 ## Requirements
 - Python 3.7+
-- PyTorch 0.4.1
-- torchvision 0.2.0 (**Do not use the lastest 0.2.2 version**)
+- PyTorch 1.10.2
+- torchvision 0.11.3
 - progress
 - matplotlib
 - numpy
